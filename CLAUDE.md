@@ -122,6 +122,97 @@ To enable automatic pushing to Docker Hub, configure these secrets in your repos
 ### Multi-architecture Support
 The workflow builds images for both `linux/amd64` and `linux/arm64` platforms.
 
+## Git Workflow
+
+This project follows a feature branch workflow with conventional commits. Follow these guidelines:
+
+### Branch Management
+1. **Create feature branches** for each new feature or fix:
+   ```bash
+   git checkout -b feat/add-new-ubuntu-version
+   git checkout -b fix/dockerfile-dependency-issue
+   git checkout -b docs/update-readme
+   ```
+
+2. **Branch naming conventions**:
+   - `feat/description` - New features
+   - `fix/description` - Bug fixes
+   - `docs/description` - Documentation updates
+   - `chore/description` - Maintenance tasks
+   - `refactor/description` - Code refactoring
+
+### Conventional Commits
+Use conventional commit messages following this format:
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+**Types:**
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Code style changes (formatting, etc.)
+- `refactor`: Code refactoring without changing functionality
+- `test`: Adding or updating tests
+- `chore`: Build process or auxiliary tool changes
+- `ci`: CI/CD pipeline changes
+
+**Examples:**
+```bash
+git commit -m "feat: add support for Ubuntu 26.04 LTS"
+git commit -m "fix(dockerfile): resolve missing dependency issue"
+git commit -m "docs: update installation instructions"
+git commit -m "ci: add multi-architecture build support"
+```
+
+### Development Workflow
+1. **Start new feature**:
+   ```bash
+   git checkout master
+   git pull origin master
+   git checkout -b feat/your-feature-name
+   ```
+
+2. **Make changes and commit frequently**:
+   ```bash
+   # Make your changes
+   git add .
+   git commit -m "feat: add initial Ubuntu 26.04 Dockerfile"
+   
+   # Continue working
+   git add .
+   git commit -m "feat: update dependencies for Ubuntu 26.04"
+   
+   # Push regularly
+   git push origin feat/your-feature-name
+   ```
+
+3. **Before merging**:
+   ```bash
+   # Ensure your branch is up to date
+   git checkout master
+   git pull origin master
+   git checkout feat/your-feature-name
+   git rebase master
+   
+   # Final push
+   git push origin feat/your-feature-name --force-with-lease
+   ```
+
+4. **Create Pull Request** via GitHub interface
+
+### Important Guidelines
+- **Never work directly on master** - always use feature branches
+- **Commit after each logical change** - don't batch unrelated changes
+- **Push regularly** - at least after each commit
+- **Test before pushing** - ensure Docker builds work
+- **Keep commits atomic** - one logical change per commit
+- **Write descriptive commit messages** - explain the "why" not just the "what"
+
 ## Development Guidelines
 
 When modifying this project:
