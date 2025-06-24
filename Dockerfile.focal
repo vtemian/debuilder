@@ -1,5 +1,5 @@
 FROM buildpack-deps:focal-scm
-MAINTAINER Presslabs <ping@presslabs.com>
+MAINTAINER Vlad Temian <vladtemian@gmail.com>
 
 ENV DEBUILD_OPTS="-us -uc -b"
 ENV DEBIAN_FRONTEND=noninteractive
